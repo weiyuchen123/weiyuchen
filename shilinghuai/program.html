@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue语法</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id = "myID">
+    <span>Message: {{ msg }}</span>
+
+</div>
+</body>
+    <script>
+        new Vue({
+            el:'#myID',
+            data: {
+                msg: 'Hello World!'
+            }
+        })
+    </script>
+</html>

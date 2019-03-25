@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue路由</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--vue-router是vue.js官方的路由插件，它和vue.js是深度集成的，适合构建单页面应用。vue单页面应用是基于路由和-->
+    <!--组件的，路由用来设定访问路径，并将路径和组件映射起来。传统的页面应用，是使用超链接来实现页面切换和跳转的。-->
+    <!--在vue-router单页面应用中，则是路径的切换，也就是组件之间的切换-->
+    <div>
+        <!-- 4、<router-link>默认会被渲染成一个 `<a>` 标签 ,to指令跳转到指定路径 -->
+        <router-link to="/home">Go to Home</router-link>
+        <router-link to="/about">Go to About</router-link>
+    </div>
+
+    <!-- 5、在页面上使用<router-view></router-view>标签，用于渲染匹配的组件 -->
+    <router-view></router-view>
+    </div>
+<script type="text/javascript">
+    /* 1、创建组件 */
+    const Home = Vue.extend({
+        template: '<div><h1>Home</h1><p>{{msg}}</p></div>',
+        data: function() {
+            return {
+                msg: 'Hello, vue router!'
+            }
+        }
+    });
+    const About = Vue.extend({
+        template: '<div><h1>About</h1><p>This is the tutorial about vue-router.</p></div>'
+    });
+
+    // 2. 创建 router 实例，然后传 `routes`路由映射 配置
+    const router = new VueRouter({
+        routes: [
+            { path: '/home', component: Home },
+            { path: '/about', component: About },
+            { path: '/', component: Home } //设置默认路径
+        ]
+    });
+
+    // 3. 创建和挂载根实例。记得要通过 router 配置参数注入路由，从而让整个应用都有路由功能
+    const vm = new Vue({
+        router: router
+    }).$mount('#app');
+
+    // 现在，应用已经启动了！
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>当创建一个vue实例，你可以传入一个选项对象。</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<p>这个网页主要描述的就是如何使用这些选项来创建你想要的行为</p>
+<p>数据与方法：</p>
+<p>Object.freeze()，这会阻止修改现有的属性</p>
+<div id="app">
+    <p>{{ foo }}</p>
+    <!-- 这里的 `foo` 不会更新！ -->
+    <button v-on:click="foo = 'baz'">Change it</button>
+</div>
+
+
+</body>
+<script>
+    var data = { a: 1 }
+    var vm = new Vue({
+        data: data
+    })
+    //Object.freeze() 这会阻止修改现有的属性，也意味着响应系统无法再追踪变化。
+    var obj = {
+        foo: 'bar'
+    }
+    Object.freeze(obj)
+    new Vue({
+        el: '#app',
+        data: obj
+    })
+    //↑End
+</script>
+</html>

@@ -8,14 +8,67 @@
 <body>
 <div id = "myID">
     <span>Message: {{ msg }}</span>
-
+<!-- 使用v-html指令-->
+<div id = "myID1">
+        <!--<span >Message: v-html="rawHtml" </span>-->
+        <!-- 使用v-html指令-->
+        <p>Using v-html directive: <span v-html="rawHtml"></span></p>
 </div>
+</div>
+<!--if指令-->
+<div id = "ifID">
+    <div v-if="Math.random() > 0.5">
+        Now you see me
+    </div>
+    <div v-else>
+        Now you don't
+    </div>
+</div>
+<!--for指令-->
+<ul id="example-1">
+    <li v-for="item in items">
+        {{ item.message }}
+    </li>
+</ul>
+<!--v-for块中，我们拥有对父作用域属性的完全访问权。-->
+<!--v-on指令监听DOM事件，并在触发时运行一些js代码-->
+<!--v-model指令在表单<input>、<textarea>、<select>元素上创建双向绑定。本质是语法糖。他负责监听用户的输入事件以更新数据-->
+<div id="formID">
+    <input v-model="message" placeholder="edit me">
+    <p>Message is: {{ message }}</p>
+</div>
+
+
 </body>
     <script>
         new Vue({
             el:'#myID',
             data: {
                 msg: 'Hello World!'
+            }
+        })
+        new Vue({
+            el:'#myID1',
+            data: {
+                rawHtml: '<span style="color: red">this should be red</span>'
+            }
+        })
+        new Vue({
+            el:'#ifID',
+        })
+        var example1 = new Vue({
+            el: '#example-1',
+            data: {
+                items: [
+                    { message: 'Foo' },
+                    { message: 'Bar' }
+                ]
+            }
+        })
+        new Vue({
+            el: '#formID',
+            data: {
+                message:''
             }
         })
     </script>

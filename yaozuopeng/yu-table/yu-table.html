@@ -1,0 +1,53 @@
+<!--
+  @created by yaozuopeng on 2019-3-29 10:36:11
+  @updated by
+  @description 表格
+-->
+<yu-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+  <yu-form-item label="活动名称" prop="name">
+    <yu-input v-model="ruleForm.name"></yu-input>
+  </yu-form-item>
+  <yu-form-item label="活动区域" prop="region">
+    <yu-select v-model="ruleForm.region" placeholder="请选择活动区域">
+      <yu-option label="区域一" value="shanghai"></yu-option>
+      <yu-option label="区域二" value="beijing"></yu-option>
+    </yu-select>
+  </yu-form-item>
+  <yu-form-item label="活动时间" required>
+    <yu-col :span="11">
+      <yu-form-item prop="date1">
+        <yu-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;"></yu-date-picker>
+      </yu-form-item>
+    </yu-col>
+    <yu-col class="line" :span="2">-</yu-col>
+    <yu-col :span="11">
+      <yu-form-item prop="date2">
+        <yu-time-picker type="fixed-time" placeholder="选择时间" v-model="ruleForm.date2" style="width: 100%;"></yu-time-picker>
+      </yu-form-item>
+    </yu-col>
+  </yu-form-item>
+  <yu-form-item label="即时配送" prop="delivery">
+    <yu-switch on-text="" off-text="" v-model="ruleForm.delivery"></yu-switch>
+  </yu-form-item>
+  <yu-form-item label="活动性质" prop="type">
+    <yu-checkbox-group v-model="ruleForm.type">
+      <yu-checkbox label="美食/餐厅线上活动" name="type"></yu-checkbox>
+      <yu-checkbox label="地推活动" name="type"></yu-checkbox>
+      <yu-checkbox label="线下主题活动" name="type"></yu-checkbox>
+      <yu-checkbox label="单纯品牌曝光" name="type"></yu-checkbox>
+    </yu-checkbox-group>
+  </yu-form-item>
+  <yu-form-item label="特殊资源" prop="resource">
+    <yu-radio-group v-model="ruleForm.resource">
+      <yu-radio label="线上品牌商赞助"></yu-radio>
+      <yu-radio label="线下场地免费"></yu-radio>
+    </yu-radio-group>
+  </yu-form-item>
+  <yu-form-item label="活动形式" prop="desc">
+    <yu-input type="textarea" v-model="ruleForm.desc"></yu-input>
+  </yu-form-item>
+  <yu-form-item>
+    <yu-button type="primary" @click="submitForm('ruleForm')">立即创建</yu-button>
+    <yu-button @click="resetForm('ruleForm')">重置</yu-button>
+  </yu-form-item>
+</yu-form>

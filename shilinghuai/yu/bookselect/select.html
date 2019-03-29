@@ -1,0 +1,43 @@
+<!-- 
+  @Created by shilinghuai shilh2@yusys.com.cn on 2019-3-26 10:59:48.
+  @updated by
+  @description select
+-->
+<div>
+  <yu-xform related-table-name="refTable" form-type="search">
+    <yu-xform-group :column="4">
+      <yu-xform-item placeholder="标题" ctype="input" name="title"></yu-xform-item>
+      <yu-xform-item placeholder="时间" ctype="datepicker" name="createAt"></yu-xform-item>
+      <yu-xform-item placeholder="作者" ctype="input" name="author"></yu-xform-item>
+    </yu-xform-group>
+  </yu-xform>
+  <div class="yu-toolBar">
+    <yu-button-group>
+      <yu-button icon="plus" @click="addFn">新增</yu-button>
+      <yu-button icon="edit" @click="modifyFn">修改</yu-button>
+      <yu-button icon="document" @click="infoFn">详情</yu-button>
+      <yu-button icon="yx-bin" @click="deleteFn">删除</yu-button>
+      <yu-button icon="yx-file-excel" @click="exportFn">导出</yu-button>
+    </yu-button-group>
+  </div>
+  <yu-xtable ref="refTable" row-number :data-url="dataUrl" selection-type="radio">
+    <yu-xtable-column label="标题" prop="title" width="200" sortable></yu-xtable-column>
+    <yu-xtable-column label="作者" prop="author" width="110"></yu-xtable-column>
+    <yu-xtable-column label="发布时间" prop="publish_time"></yu-xtable-column>
+  </yu-xtable>
+  <!-- 说明dialog可配置宽高属性，若不配置则宽度默认为屏幕50%，高度自适应
+     width="650px" height="380px" -->
+  <yu-xdialog :title="viewTitle[viewType]" :visible.sync="dialogVisible" width="650px">
+    <yu-xform ref="refForm" label-width="80px" v-model="formdata" :disabled="formDisabled">
+      <yu-xform-group>
+
+        <yu-xform-item label="作者" ctype="input" name="author"></yu-xform-item>
+        
+      </yu-xform-group>
+      <div class="yu-grpButton">
+        <yu-button v-show="saveBtnShow" icon="check" type="primary" @click="saveFn">保存</yu-button>
+        <yu-button icon="yx-undo2" type="primary" @click="cancelFn">取消</yu-button>
+      </div>
+    </yu-xform>
+  </yu-xdialog>
+</div>

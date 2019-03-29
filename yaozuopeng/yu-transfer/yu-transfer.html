@@ -1,0 +1,22 @@
+<!--
+  @created by yaozuopeng on 2019-3-29 09:51:44
+  @updated by
+  @description 穿梭框
+-->
+<yu-transfer
+v-model="value3"
+filterable
+:left-default-checked="[2, 3]"
+:right-default-checked="[1]"
+:render-content="renderFunc"
+:titles="['Source', 'Target']"
+:button-texts="['到左边', '到右边']"
+:footer-format="{
+  noChecked: '${total}',
+  hasChecked: '${checked}/${total}'
+}"
+@change="handleChange"
+:data="data">
+<yu-button class="transfer-footer" slot="left-footer" size="small">操作</yu-button>
+<yu-button class="transfer-footer" slot="right-footer" size="small">操作</yu-button>
+</yu-transfer>

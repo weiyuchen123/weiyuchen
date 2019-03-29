@@ -37,7 +37,7 @@ define(function (require, exports) {
 
       methods: {
         handleChange: function (value, direction, movedKeys) {
-          console.log(value, direction, movedKeys);
+          alert(value, direction, movedKeys);
         }
       }
 

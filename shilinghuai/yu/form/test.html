@@ -1,0 +1,22 @@
+<!--
+  @created by shilinghuai on 2019-3-27 15:38:07
+  @updated by
+  @description test
+-->
+<div class="blank_template">
+  <yu-form ref="form" :model="yuform" lable-width="100px" :rules="rules">
+    <yu-form-item lable ="姓名" pron= "name">
+    <yu-input v-model="yuform.name"></yu-input>
+    </yu-form-item>
+    <yu-form-item label ="星球" prop="star">
+        <yu-select v-model="yuform.star" label='星球' @remove-tag="removechange" multiple=true>
+            <yu-option v-for="item in options" :lable="item.lable" :value="item.label"></yu-option>
+        </yu-select>
+    </yu-form-item>
+    <yu-form-item>
+      <yu-button @click="submit">提交</yu-button>
+      <yu-button @click="close">重置</yu-button>
+    </yu-form-item>
+    
+  </yu-form>
+</div>

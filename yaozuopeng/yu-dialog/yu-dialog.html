@@ -1,0 +1,9 @@
+<!--
+  @created by yaozuopeng on 2019-4-1 21:36:11
+  @updated by
+  @description 会话组件
+-->
+<yu-button @click="show">打开对话框</yu-button>
+ <yu-dialog :visible.sync="dialogVisible" @open="open">
+<span>这是一个信息</span>
+</yu-dialog>

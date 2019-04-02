@@ -1,0 +1,17 @@
+<!--
+  @created by yaozuopeng on 2019-4-1 21:41:54
+  @updated by
+  @description x表格
+-->
+<yu-xtable ref="yutable" :data="tabledata" @row-click="s1">
+  <yu-xtable-column type="selection" label="序号">
+  </yu-xtable-column>
+  <yu-xtable-column ctype="datepicker" prop="date" label="日期">
+  </yu-xtable-column>
+  <yu-xtable-column prop="name" label="姓名" >
+  </yu-xtable-column>
+  <yu-xtable-column prop="age" label="年龄" align="center">
+  </yu-xtable-column>
+  <yu-xtable-column :options="sexs" ctype="select" prop="sex" label="性别">
+  </yu-xtable-column>
+</yu-xtable>

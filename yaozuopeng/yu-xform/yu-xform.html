@@ -1,0 +1,20 @@
+<!--
+  @created by yaozuopeng on 2019-4-1 21:38:51
+  @updated by
+  @description form表单组件
+-->
+<yu-xform label-width="80px" ref="yuform" :rules="rule1" >
+  <yu-xform-group :column="2">
+  <yu-xform-item label="姓名" ctype="input" name="pname"
+v-model="yuform.pname" >
+  </yu-xform-item>
+  <yu-xform-item label="年龄" ctype="input" name="page" v-model="yuform.page">
+  </yu-xform-item>
+  <yu-xform-item label="住址" ctype="input" name="padr">
+  </yu-xform-item>
+  <yu-xform-item label="性别" ctype="select" :options="psex" name="sex">
+  </yu-xform-item>
+  </yu-xform-group>
+  <yu-button  @click="submit" prop="submit">提交</yu-button>
+  <yu-button  @click="close" prop="close">重置</yu-button>
+</yu-xform>

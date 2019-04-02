@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="UTF-8">
+	<title>vue事件</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+	<div id="event">
+		<!--1.v-on事件，指令监听DOM事件，并在触发时运行一些js代码 缩写：@click-->
+		<button v-on:click="counter += 1">Add 1</button>
+		<p>这个按钮被点击了 {{ counter }} 次.</p>
+		<!--调用方法名称-->
+		<button @click="alertPop">vue!</button>
+		<!--内联处理器-->
+		<button v-on:click="say('hi')">Say hi</button>
+		
+		
+	</div>
+  </body>
+ 
+  <script>
+    var app = new Vue({
+	  el: '#event',
+	  data: {
+		counter: 0,
+		name: 'Vue.js'
+	  },
+	  methods: {
+		alertPop: function (event) {
+			alert('Hello ' + this.name + '!')
+			// `event` 是原生 DOM 事件
+			if (event) {
+			   alert(event.target.tagName)
+			}
+		},
+		say: function (message) {
+		  alert(message)
+		}
+	  },
+	})
+	// 也可以用 JavaScript 直接调用方法
+	app.alertPop();
+  </script>
+</html>

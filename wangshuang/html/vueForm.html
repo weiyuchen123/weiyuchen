@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="UTF-8">
+	<title>vue表单</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+	<div id="form">
+		<!--文本-->
+		<input v-model="message" placeholder="edit me">
+		<p>Message is: {{ message }}</p>
+		
+		<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+	    <label for="jack">Jack</label>
+	    <input type="checkbox" id="john" value="John" v-model="checkedNames">
+	    <label for="john">John</label>
+	    <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+	    <label for="mike">Mike</label>
+        <p>Checked names: {{ checkedNames }}</p>
+	</div>
+  </body>
+ 
+  <script>
+    var app = new Vue({
+	  el: '#form',
+	  data: {
+		message: '',
+		checkedNames:[]
+	  },
+	  methods: {
+		
+	  },
+	})
+	
+  </script>
+</html>

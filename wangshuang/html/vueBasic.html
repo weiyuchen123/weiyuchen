@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="UTF-8">
+	<title>vue事件</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+	<div id="head">
+		<!--1.渲染变量-->
+		{{ message }}
+		
+		<!--2.v-on指令监听DOM事件，并在触发时运行一些js代码 缩写：@click-->
+		<button v-on:click="reverseMessage">逆转消息</button>
+		
+		<!--3.悬浮事件的监听 -->
+		<p v-bind:title="message">
+		悬停查看信息
+		</p>
+		
+		<!--4.v-if指令-->
+		<p v-if="seen">
+		条件循环
+		</p>
+		
+		<!--5.v-for指令-->
+		<p>项目列表</p>
+		<ol>
+			<li v-for="todo in todos">
+				{{todo.text}}
+			</li>
+		</ol>
+		<p>在文本框输入文字，添加到项目列表</p>
+		<!--6.在文本框输入文本，点击添加按钮，添加到数组中，响应式渲染到页面-->
+		<!--v-model指令在表单<input>、<textarea>、<select>元素上创建双向绑定。他负责监听用户的输入事件以更新数据-->
+		<input v-model="addText" id="addText" placeholder="edit me" >
+		<button v-on:click="add">添加</button>
+		
+		<!--7.组件-->
+		<ol>
+		    <todo-item></todo-item>
+		</ol>
+		
+		<ol>
+			<todo-items
+			  v-for="item in list"
+			  v-bind:todo="item"
+			  v-bind:key="item.id"
+			></todo-items>
+		</ol>
+		
+	</div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+	//自定义组件
+	Vue.component('todo-item', {
+	  template: '<li>这是个待办项</li>'
+	})
+	
+	Vue.component('todo-items', {
+	  props: ['todo'],
+	  template: '<li>{{ todo.text }}</li>'
+	})
+    var app = new Vue({
+	  el: '#head',
+	  data: {
+		message: 'Hello Vue!',
+		seen: true,
+		todos: [
+		  { text: '学习 Vue01' },
+		  { text: '学习 Vue02' },
+		  { text: '学习 Vue03' },
+		],
+		addText: "",
+		list: [
+		  { id: 0, text: '苹果' },
+		  { id: 1, text: '香蕉' },
+		  { id: 2, text: '其他' }
+		]
+	  },
+	  methods: {
+		//动态添加数组事件
+		add: function () {
+			this.todos.push({ text: this.addText })
+		},
+		//反转事件
+		reverseMessage: function () {
+			this.message = this.message.split('').reverse().join('')
+		}
+	  },
+	})
+  </script>
+</html>

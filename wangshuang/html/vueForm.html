@@ -11,6 +11,13 @@
 		<input v-model="message" placeholder="edit me">
 		<p>Message is: {{ message }}</p>
 		
+		<!--多行文本--->
+		<span>Multiline message is:</span>
+		<p style="white-space: pre-line;">{{ messages }}</p>
+		<textarea v-model="messages" placeholder="add multiple lines"></textarea>
+		<br>
+		
+		<!-- 复选框 -->
 		<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
 	    <label for="jack">Jack</label>
 	    <input type="checkbox" id="john" value="John" v-model="checkedNames">
@@ -18,18 +25,84 @@
 	    <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
 	    <label for="mike">Mike</label>
         <p>Checked names: {{ checkedNames }}</p>
+		
+		<!-- 单选按钮 -->
+		<input type="radio" id="one" value="0" v-model="picked">
+		<label for="one">male</label>
+		<input type="radio" id="two" value="1" v-model="picked">
+		<label for="two">female</label>
+		<span style="display:block">Picked: {{ picked }}</span>
+		<br>
+		
+		<!-- 单选下拉框 -->
+		<select v-model="selected">
+			<option value="">请选择</option>
+			<option v-for="option in options" v-bind:value="option.id">
+			{{ option.text }}
+			</option>
+		</select>
+		<span>Selected:{{selected}}</span>
+		<br>
+		
+		<!-- 多选下拉框 按住shift选中多个-->
+		<select v-model="selectedArr" style="width:50px;margin-top:15px" multiple>
+			<option>A</option>
+			<option>B</option>
+			<option>C</option>
+			<option>D</option>
+		</select>
+		<span>Selected: {{ selectedArr }}</span>
+		<br>
+		<br>
+		<!-- 修饰符	-->
+		
+		<!-- .lazy -->
+		<input v-model.lazy="msg" @onchange="show">
+		<span>msg: {{ msg }}</span>
+		<br>
+		<br>
+		
+		<!-- .number -->
+		<input v-model.number="age" type="number">
+		<span>age: {{ age }}</span>
+		<br>
+		<br>
+		
+		<!-- .trim -->
+		<input v-model.trim="msg1">
+		<span>trim: {{ msg1 }}</span>
+		<br>
+		<br>
 	</div>
   </body>
- 
+
+
+
+
   <script>
     var app = new Vue({
 	  el: '#form',
 	  data: {
 		message: '',
-		checkedNames:[]
+		messages: '',
+		checkedNames:[],
+		picked: '',
+		selected: '',
+		selectedArr:[],
+		options: [
+		  { text: 'One', id: '1' },
+		  { text: 'Two', id: '2' },
+		  { text: 'Three', id: '3' }
+		],
+		pick: '',
+		msg: '',
+		age: '',
+		msg1: '',
 	  },
 	  methods: {
-		
+		show: function () {
+			console.log(this.msg); 
+		}
 	  },
 	})
 	

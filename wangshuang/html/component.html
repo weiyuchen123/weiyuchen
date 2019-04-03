@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="UTF-8">
+	<title>vue组件</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+	<div id="component">
+		<my-button></my-button>
+		<my-button></my-button>
+		<my-button></my-button>
+		
+		<!-- 通过prop向子组件传递数据 -->
+		<blog-post title="Vue1"></blog-post>
+		
+		<!-- v-bind 来动态传递 prop -->
+		<blog-post
+		  v-for="post in posts"
+		  v-bind:title="post.title"
+		></blog-post>
+		
+		<!-- 每个组件必须只有一个根元素 -->
+		<blog-post1 title="Vue111" content="lala"></blog-post1>		
+		
+		<!-- 组件复杂时，定义组件props中的对象 -->
+		<blog-post2
+			v-for="post in posts"
+			v-bind:post="post"
+		></blog-post2>
+		
+		<div :style="{ fontSize: postFontSize + 'em' }" >
+			<blog-post3
+				v-for="post in posts"
+				v-bind:post=post
+				v-on:enlarge-text="postFontSize += 0.2"
+			></blog-post3>
+		</div>
+	</div>
+  </body>
+
+  <script>
+    Vue.component('my-button', {
+		data: function () {
+			return {
+				count: 0
+			}
+		},
+		template: '<button @click="count++">被点击了{{ count }}次</button>'
+	})
+	
+	<!-- 通过prop向子组件传递数据 -->
+	Vue.component('blog-post', {
+	  props: ['title'],
+	  template: '<h3>{{ title }}</h3>'
+	})
+  
+    <!-- 多个子元素 -->
+	Vue.component('blog-post1', {
+	  props: ['title','content'],
+	  template:
+		'<div class="blog-post1"><h3>{{ title }}</h3><div v-html="content"></div></div>'
+	})
+  
+	<!-- 复杂时 -->
+	Vue.component('blog-post2', {
+	  props: ['post'],
+	  template: 
+		'<div class="blog-post2">'+
+			'<h3>{{ post.title }}</h3>'+
+			'<p>{{ post.comment}}</p>'+
+			'<div v-html="post.content"></div>'+
+		'</div>'
+	})
+	
+	<!-- 父级子级进行沟通 -->
+	Vue.component('blog-post3', {
+	  props: ['post'],
+	  template: 
+		`<div class="blog-post3"><h3>{{ post.title }}</h3><button v-on:click="$emit('enlarge-text')">放大字号</button><div v-html="post.content"></div></div>`
+	})
+	
+	
+    var app = new Vue({
+	
+	  el: '#component',
+	  data: {
+	    //博文的数组
+		posts: [
+		  {title: 'vue111', comment: '评论1', content: '内容1'},
+		  {title: 'vue222', comment: '评论2', content: '内容2'}, 
+		],
+		postFontSize: 1
+	  },
+	  methods: {
+		
+	  },
+	})
+	
+  </script>
+</html>

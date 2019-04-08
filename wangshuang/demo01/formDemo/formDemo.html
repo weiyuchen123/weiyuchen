@@ -1,0 +1,57 @@
+<!-- 
+  @Created by wangshuang3 wangshuang3@yusys.com.cn on 2019-4-3 17:48:48.
+  @updated by
+  @description 普通模板
+-->
+<div class="my-template">
+  <link href="./pages/demo01/formDemo/formDemo.css" rel="stylesheet" type="text/css">
+  <yu-form ref="form" :model="yuform" label-width="100px">
+    <div class="form-left">
+        <div class="my-row">
+            <span class="my-span">姓名：</span>
+            <yu-input class="my-input" v-model="yuform.name" placeohrder="请输入" ></yu-input>
+          </div>
+          <div class="my-row">
+            <span class="my-span">单位：</span>
+            <yu-input class="my-input" v-model="yuform.deptName" placeohrder="请输入" ></yu-input>
+          </div>
+          <div class="my-row">
+            <span class="my-span">性别：</span>
+            <yu-radio-group v-model="yuform.sex" >
+                <yu-radio label="male">男</yu-radio>
+                <yu-radio label="female">女</yu-radio>
+            </yu-radio-group>
+          </div>
+          <div class="my-row">
+            <span class="my-span">生日：</span>
+            <yu-date-picker v-model="yuform.birthday" type="date" placeholder="选择日期" style="width: 70%">
+            </yu-date-picker>
+          </div>
+          <div class="my-row">
+              <span class="my-span">城市：</span>
+              <yu-select v-model="yuform.city" style="width: 70%;">
+                  <yu-option v-for="item in options" :label="item.name" :value="item.value">
+                  </yu-option>
+              </yu-select>
+            </div>
+          <div class="my-row">
+            <span class="my-span">爱好：</span>
+            <yu-checkbox-group v-model="yuform.checkList" style="width: 80%;display: inline-flex">
+              <yu-checkbox label="看书"></yu-checkbox>
+              <yu-checkbox label="打游戏"></yu-checkbox>
+              <yu-checkbox label="写代码"></yu-checkbox>
+            </yu-checkbox-group>
+          </div>
+    </div>
+    <div class="form-right">
+      <div class="my-row">
+        <span class="my-span" >选课：</span>
+        <yu-transfer v-model="yuform.value" :data="data" style="width: 60%;display: inline-block;" ></yu-transfer>
+      </div>
+    </div>
+    <div class="my-row" style="text-align: center">
+        <yu-button @click="submit">提交</yu-button>
+        <yu-button @click="reset">重置</yu-button>
+    </div>
+  </yu-form>
+</div>

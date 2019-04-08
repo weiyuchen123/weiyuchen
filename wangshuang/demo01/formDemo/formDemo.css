@@ -1,0 +1,29 @@
+/**
+ * @created by yourEmail Y-m-d
+ * @updated by
+ * @description 空白模板
+ */
+.my-template {
+  width: 100%;
+  height: 100%;
+}
+.form-left{
+  float: left;
+  width: 48%;
+}
+.form-right{
+  width: 50%;
+}
+.my-row{
+  padding: 10px;
+  width: 100%;
+}
+.my-span{
+  width: 60px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+}
+.my-input{
+  width: 70%;
+}
